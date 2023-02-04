@@ -1,0 +1,24 @@
+CREATE DATABASE IF NOT EXISTS blog_site;
+
+USE blog_site;
+
+CREATE TABLE IF NOT EXISTS blog(
+	id INT(11) PRIMARY KEY AUTO_INCREMENT,
+    title VARCHAR(150) NOT NULL DEFAULT '',
+    content LONGTEXT NOT NULL DEFAULT '',
+    author VARCHAR(150) NOT NULL DEFAULT '',
+    slug VARCHAR(150) NOT NULL,
+    created_at DATETIME NOT NULL
+); 
+
+CREATE TABLE IF NOT EXISTS comment_blog(
+	id INT(11) PRIMARY KEY AUTO_INCREMENT,
+    post_id INT(11) NOT NULL,
+    content LONGTEXT NOT NULL DEFAULT '',
+    author VARCHAR(150) NOT NULL DEFAULT '',
+    created_at DATETIME NOT NULL
+);
+
+ALTER TABLE comment_blog ADD CONSTRAINT fk_blog FOREIGN KEY (post_id) REFERENCES blog(id);
+
+/* pass: crimson_circle*/
